@@ -50,4 +50,8 @@ public class DraftPage extends BaseMailPage {
 		baseMailPage.send();
 		return new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SUCCESS_MSG_XPATH))).isDisplayed();
 	}
+
+	public boolean isDraftsDisplayed() {
+		return !drafts.isEmpty();
+	}
 }
