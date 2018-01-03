@@ -7,11 +7,11 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.
  */
-public abstract class MailAbstractPage {
+public abstract class AbstractMailPage {
 
 	public static WebDriver driver;
 
-	public MailAbstractPage(WebDriver driver) {
+	public AbstractMailPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

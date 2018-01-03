@@ -5,26 +5,23 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static data.TestData.LOGIN;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.
  */
-public class BaseMailPage extends MailAbstractPage {
+public class BaseMailPage extends AbstractMailPage {
 	private String accountLogoXpath = "//*[contains(@title, '%s')]";
-	private String exitBtnXpath = "//a[contains(text(), 'Выйти')]";
-	private String writeBtnXpath = "//div[contains(@role, 'button') and contains(text(), 'НАПИСАТЬ')]";
-	private String subjectXpath = "//*[@name = 'subjectbox']";
-	private String bodyXpath = "//div[@role = 'textbox']";
-	private String addressXpath = "//textarea[@name = 'to']";
-	private String sendXpath = "//div[contains(text(), 'Отправить')]";
-	private String draftBtnXpath = "//*[contains(@aria-label, 'Черновики')]";
-	private String sentBtnXpath = "//*[contains(@title, 'Отправленные')]";
-	private String letterIsCreatedIndicator = "//span[text() = 'Сохранено']";
 
+	@FindBy(xpath = "//a[contains(text(), 'Выйти')]")
+	public WebElement exitBtn;
+	@FindBy(xpath = "//div[contains(@role, 'button') and contains(text(), 'НАПИСАТЬ')]")
+	public WebElement writeBtn;
+	@FindBy(xpath = "//*[contains(@aria-label, 'Черновики')]")
+	public WebElement draftsBtn;
+	@FindBy(xpath = "//*[contains(@title, 'Отправленные')]")
+	public WebElement sentBtn;
 	@FindBy(xpath = "//div[@role='main']")
 	public WebElement letters;
 
@@ -32,12 +29,9 @@ public class BaseMailPage extends MailAbstractPage {
 		super(driver);
 	}
 
-	public void createMail(String address, String subject, String body) throws InterruptedException {
-		clickWriteBtn();
-		driver.findElement(By.xpath(addressXpath)).sendKeys(address);
-		driver.findElement(By.xpath(subjectXpath)).sendKeys(subject);
-		driver.findElement(By.xpath(bodyXpath)).sendKeys(body);
-		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(letterIsCreatedIndicator)));
+	public MailCreationPage openCreateMailPage() {
+		writeBtn.click();
+		return new MailCreationPage(driver);
 	}
 
 	public boolean isPageOpened() {
@@ -49,26 +43,22 @@ public class BaseMailPage extends MailAbstractPage {
 	}
 
 	public void clickWriteBtn() {
-		driver.findElement(By.xpath(writeBtnXpath)).click();
+		writeBtn.click();
 	}
 
 	public DraftPage openDrafts() {
-		driver.findElement(By.xpath(draftBtnXpath)).click();
+		draftsBtn.click();
 		return new DraftPage(driver);
 	}
 
 	public SentPage openSentMails() throws InterruptedException {
-		driver.findElement(By.xpath(sentBtnXpath)).click();
+		sentBtn.click();
 		return new SentPage(driver);
-	}
-
-	public void send() {
-		driver.findElement(By.xpath(sendXpath)).click();
 	}
 
 	public LoginPage logOff() {
 		driver.findElement(By.xpath(String.format(accountLogoXpath, LOGIN.getValue()))).click();
-		driver.findElement(By.xpath(exitBtnXpath)).click();
+		exitBtn.click();
 		return new LoginPage(driver);
 	}
 }

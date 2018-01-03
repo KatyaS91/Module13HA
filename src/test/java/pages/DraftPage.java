@@ -16,13 +16,10 @@ import java.util.List;
 public class DraftPage extends BaseMailPage {
 
 	private String subjectLabelXpath = "//span[contains(text(), '%s')]";
-	private static final String DRAFTS_XPATH = "//div[@role = 'main']//table//tr";
 	private static final String SUCCESS_MSG_XPATH = "//div[contains(text(), 'Письмо отправлено')]";
 
-	@FindBy(xpath = DRAFTS_XPATH)
+	@FindBy(xpath = "//div[@role = 'main']//table//tr")
 	public List<WebElement> drafts;
-	@FindBy(xpath = SUCCESS_MSG_XPATH)
-	public WebElement successMsg;
 
 	DraftPage(WebDriver driver) {
 		super(driver);
@@ -45,9 +42,8 @@ public class DraftPage extends BaseMailPage {
 	}
 
 	public boolean sendDraft (int draftOrder) {
-		driver.findElements(By.xpath(DRAFTS_XPATH)).get(0).click();
-		BaseMailPage baseMailPage = new BaseMailPage(driver);
-		baseMailPage.send();
+		drafts.get(0).click();
+		new MailCreationPage(driver).send();
 		return new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(SUCCESS_MSG_XPATH))).isDisplayed();
 	}
 
