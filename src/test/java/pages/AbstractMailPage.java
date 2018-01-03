@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
  */
 public abstract class AbstractMailPage {
 
-	public static WebDriver driver;
+	public WebDriver driver;
 
 	public AbstractMailPage(WebDriver driver) {
 		this.driver = driver;

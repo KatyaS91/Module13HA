@@ -2,17 +2,21 @@ package tests;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import sun.security.krb5.internal.crypto.Des;
 
 import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-import static data.TestData.URL;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.
@@ -24,11 +28,27 @@ public class BaseTestPage {
 	@BeforeClass(alwaysRun = true, description = "Start browser")
 	public void startBrowser() {
 		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
-		ChromeOptions options = new ChromeOptions();
-		options.addArguments("start-maximized");
-		driver = new ChromeDriver(options);
-		driver.get(URL.getValue());
-		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+/*		FirefoxProfile firefoxProfile = new FirefoxProfile();
+		DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
+		desiredCapabilities.setPlatform(Platform.WINDOWS);
+		desiredCapabilities.setVersion("57");
+		desiredCapabilities.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
+		String hubHost = "localhost";
+		try {
+			driver = new RemoteWebDriver(new URL("http://" + hubHost + ":4444/wd/hub"), desiredCapabilities);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}*/
+
+		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+		capabilities.setPlatform(Platform.WINDOWS);
+		capabilities.setVersion("63");
+		try {
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
 	}
 
 	@AfterClass
@@ -36,14 +56,12 @@ public class BaseTestPage {
 		driver.quit();
 	}
 
-	//scroll action
 	void scrollDown(WebElement targetElement) {
 		new Actions(driver).moveToElement(targetElement).build().perform();
 		JavascriptExecutor jse = ((JavascriptExecutor)driver);
 		jse.executeScript("scroll(0, 400);");
 		System.out.println("Scroll down");
 	}
-	//double click action
 	void doubleClick (WebElement element) {
 		new Actions(driver).doubleClick(element).build().perform();
 	}

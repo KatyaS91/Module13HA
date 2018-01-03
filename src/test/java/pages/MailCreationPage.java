@@ -21,6 +21,8 @@ public class MailCreationPage extends BaseMailPage {
 	public WebElement addressField;
 	@FindBy(xpath = "//div[contains(text(), 'Отправить')]")
 	public WebElement sendBtn;
+	@FindBy(xpath = "//div[@command = 'Files']")
+	public WebElement attachFile;
 
 	public MailCreationPage(WebDriver driver) {
 		super(driver);
@@ -35,5 +37,14 @@ public class MailCreationPage extends BaseMailPage {
 
 	public void send() {
 		sendBtn.click();
+	}
+
+	public boolean attachFile(String fileLocation) {
+		try {
+			attachFile.sendKeys(fileLocation);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 }
