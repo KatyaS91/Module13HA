@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -20,6 +21,8 @@ public class LoginPage extends BaseMailPage {
 	public WebElement passwordInput;
 	@FindBy(css = "#identifierId")
 	public WebElement loginInput;
+	@FindBy(xpath = "//div[contains(text(), 'More options')]")
+	public WebElement moreOptionsBtn;
 
 	public LoginPage(WebDriver driver) {
 		super(driver);
@@ -39,5 +42,17 @@ public class LoginPage extends BaseMailPage {
 
 	public boolean isPasswordInputDisplayed() {
 		return passwordInput.isDisplayed();
+	}
+
+	public boolean isMenuDisplayed() {
+		return driver.findElement(By.xpath("//div[@role='menu']")).isDisplayed();
+	}
+
+	public boolean isCursorPointer() {
+		return driver.findElement(By.tagName("body")).getCssValue("cursor").equals("pointer");
+	}
+
+	public boolean isInputEmpty(WebElement input) {
+		return input.getText().length()==0;
 	}
 }

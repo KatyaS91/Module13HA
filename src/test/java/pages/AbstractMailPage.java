@@ -23,7 +23,4 @@ public abstract class AbstractMailPage {
 	public boolean isElementPresent(By locator) {
 		return driver.findElements(locator).size() > 0;
 	}
-
-
-
 }

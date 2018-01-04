@@ -1,9 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Tests" verbose="1">
     <test name="Tests">
+        <parameter name="browser" value="Chrome" />
         <groups>
             <run>
-                <exclude name="p1"></exclude>
+                <exclude name="p0"></exclude>
             </run>
         </groups>
         <packages>

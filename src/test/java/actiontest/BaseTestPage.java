@@ -1,28 +1,22 @@
-package tests;
+package actiontest;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import sun.security.krb5.internal.crypto.Des;
 
-import java.io.*;
+import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
 
 /**
- * Created by Katsiaryna_Skarzhyns on 12/27/2017.
+ * Created by Katsiaryna_Skarzhyns on 1/4/2018.
  */
 public class BaseTestPage {
-
 	WebDriver driver;
 
 	@BeforeClass(alwaysRun = true, description = "Start browser")
@@ -72,5 +66,15 @@ public class BaseTestPage {
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFileToDirectory(screenshot, new File("d:\\tmp\\screenshot" + currDate.toString().trim() +".png"));
 		} catch (Exception ex) {}
+	}
+
+	void hover(WebElement element) {
+		new Actions(driver).moveToElement(element).build().perform();
+	}
+
+	void clearInputViaHotKeys(WebElement input) {
+		input.click();
+		new Actions(driver).keyDown(Keys.CONTROL).sendKeys(String.valueOf('\u0061')).perform();
+		new Actions(driver).sendKeys(Keys.DELETE);
 	}
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
  */
 public class JsUtils {
 
-	public void highlightElement(WebDriver driver, WebElement element) {
+	public static void highlightElement(WebDriver driver, WebElement element) {
 		String background = element.getCssValue("backgroundColor");
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].style.background = '" + "yellow" + "'", element);
