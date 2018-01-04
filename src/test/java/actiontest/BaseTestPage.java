@@ -77,4 +77,11 @@ public class BaseTestPage {
 		new Actions(driver).keyDown(Keys.CONTROL).sendKeys(String.valueOf('\u0061')).perform();
 		new Actions(driver).sendKeys(Keys.DELETE);
 	}
+
+	void highlightElement(WebDriver driver, WebElement element) {
+		String background = element.getCssValue("backgroundColor");
+		JavascriptExecutor js = ((JavascriptExecutor) driver);
+		js.executeScript("arguments[0].style.background = '" + "yellow" + "'", element);
+		js.executeScript("arguments[0].style.background = '" + background + "'", element);
+	}
 }
