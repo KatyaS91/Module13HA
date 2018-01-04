@@ -4,11 +4,11 @@
         <parameter name="browser" value="Chrome" />
         <groups>
             <run>
-                <exclude name="p0"></exclude>
+                <exclude name="p1"></exclude>
             </run>
         </groups>
         <packages>
-            <package name="tests.*"></package>
+            <package name="actiontest.*"></package>
         </packages>
     </test>
 </suite>

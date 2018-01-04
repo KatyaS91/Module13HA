@@ -37,7 +37,7 @@ public class BaseTestPage {
 
 		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setPlatform(Platform.WINDOWS);
-		capabilities.setVersion("63");
+		capabilities.setVersion("63.0");
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
 		} catch (MalformedURLException ex) {
