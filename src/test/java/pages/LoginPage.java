@@ -49,7 +49,7 @@ public class LoginPage extends BaseMailPage {
 	}
 
 	public boolean isCursorPointer() {
-		return driver.findElement(By.tagName("body")).getCssValue("cursor").equals("pointer");
+		return driver.findElement(By.tagName("body")).getCssValue("cursor").equals("auto");
 	}
 
 	public boolean isInputEmpty(WebElement input) {

@@ -1,5 +1,6 @@
 package actiontest;
 
+import data.TestData;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -12,6 +13,7 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/4/2018.
@@ -40,6 +42,8 @@ public class BaseTestPage {
 		capabilities.setVersion("63.0");
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+			driver.get(TestData.URL.getValue());
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		}
