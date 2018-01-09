@@ -37,7 +37,7 @@ public class LoginPage extends BaseMailPage {
 	}
 
 	public boolean isNextBntDisplayed() {
-		return nextBtn.isDisplayed();
+		return new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div [id*= 'Next']"))).isDisplayed();
 	}
 
 	public boolean isPasswordInputDisplayed() {

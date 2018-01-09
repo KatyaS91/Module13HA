@@ -28,7 +28,8 @@ public class MailCreationPage extends BaseMailPage {
 		super(driver);
 	}
 
-	public void createMail(String address, String subject, String body) throws InterruptedException {
+	public void createMail(String address, String subject, String body) {
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@name = 'to']")));
 		addressField.sendKeys(address);
 		subjectField.sendKeys(subject);
 		bodyField.sendKeys(body);

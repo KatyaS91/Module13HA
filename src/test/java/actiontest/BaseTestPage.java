@@ -19,25 +19,24 @@ import java.util.concurrent.TimeUnit;
  * Created by Katsiaryna_Skarzhyns on 1/4/2018.
  */
 public class BaseTestPage {
-	WebDriver driver;
+	public WebDriver driver;
 
 	@BeforeClass(alwaysRun = true, description = "Start browser")
 	public void startBrowser() {
 		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
 
-/*		FirefoxProfile firefoxProfile = new FirefoxProfile();
-		DesiredCapabilities desiredCapabilities = DesiredCapabilities.firefox();
-		desiredCapabilities.setPlatform(Platform.WINDOWS);
-		desiredCapabilities.setVersion("57");
-		desiredCapabilities.setCapability(FirefoxDriver.PROFILE, firefoxProfile);
-		String hubHost = "localhost";
+		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+		capabilities.setPlatform(Platform.WINDOWS);
+		capabilities.setVersion("57");
 		try {
-			driver = new RemoteWebDriver(new URL("http://" + hubHost + ":4444/wd/hub"), desiredCapabilities);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}*/
+			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+			driver.get(TestData.URL.getValue());
+			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		} catch (MalformedURLException ex) {
+			ex.printStackTrace();
+		}
 
-		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
+/*		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
 		capabilities.setPlatform(Platform.WINDOWS);
 		capabilities.setVersion("63.0");
 		try {
@@ -46,7 +45,7 @@ public class BaseTestPage {
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
-		}
+		}*/
 	}
 
 	@AfterClass
@@ -61,7 +60,7 @@ public class BaseTestPage {
 		System.out.println("Scroll down");
 	}
 	void doubleClick (WebElement element) {
-		new Actions(driver).doubleClick(element).build().perform();
+		new Actions(driver).moveToElement(element).doubleClick(element).build().perform();
 	}
 
 	void makeScreenshots() {
