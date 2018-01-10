@@ -63,7 +63,7 @@ public class BaseTestPage {
 		new Actions(driver).moveToElement(element).doubleClick(element).build().perform();
 	}
 
-	void makeScreenshots(WebDriver driver, String pathToSave, String name) {
+	protected void makeScreenshots(WebDriver driver, String pathToSave, String name) {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		String filePath = pathToSave + File.separator + "ScreenShots" + File.separator + name;
 
