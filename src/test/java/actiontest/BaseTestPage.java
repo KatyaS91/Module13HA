@@ -6,13 +6,14 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -20,55 +21,57 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseTestPage {
 	public WebDriver driver;
+	private DesiredCapabilities capabilities;
 
-	@BeforeClass(alwaysRun = true, description = "Start browser")
-	public void startBrowser() {
+	@BeforeClass(alwaysRun = true, description = "Start browser") public void startBrowser(ITestContext context) {
 		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
+		String browser = context.getCurrentXmlTest().getParameter("browser");
 
-		DesiredCapabilities capabilities = DesiredCapabilities.firefox();
-		capabilities.setPlatform(Platform.WINDOWS);
-		capabilities.setVersion("57");
+		if (browser.equals("Firefox")) {
+			capabilities = DesiredCapabilities.firefox();
+			capabilities.setPlatform(Platform.WINDOWS);
+			capabilities.setVersion("57");
+		}
+		if (browser.equals("Chrome")) {
+			capabilities = DesiredCapabilities.chrome();
+			capabilities.setPlatform(Platform.WINDOWS);
+			capabilities.setVersion("63.0");
+		}
+
 		try {
 			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+			driver.manage().window().maximize();
 			driver.get(TestData.URL.getValue());
 			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		} catch (MalformedURLException ex) {
 			ex.printStackTrace();
 		}
-
-/*		DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-		capabilities.setPlatform(Platform.WINDOWS);
-		capabilities.setVersion("63.0");
-		try {
-			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
-			driver.get(TestData.URL.getValue());
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
-		}*/
 	}
 
-	@AfterClass
-	public void cleanUp() {
+	@AfterClass public void cleanUp() {
 		driver.quit();
 	}
 
 	void scrollDown(WebElement targetElement) {
 		new Actions(driver).moveToElement(targetElement).build().perform();
-		JavascriptExecutor jse = ((JavascriptExecutor)driver);
+		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 		jse.executeScript("scroll(0, 400);");
 		System.out.println("Scroll down");
 	}
-	void doubleClick (WebElement element) {
+
+	void doubleClick(WebElement element) {
 		new Actions(driver).moveToElement(element).doubleClick(element).build().perform();
 	}
 
-	void makeScreenshots() {
+	void makeScreenshots(WebDriver driver, String pathToSave, String name) {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		String filePath = pathToSave + File.separator + "ScreenShots" + File.separator + name;
+
 		try {
-			Date currDate = new Date();
-			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFileToDirectory(screenshot, new File("d:\\tmp\\screenshot" + currDate.toString().trim() +".png"));
-		} catch (Exception ex) {}
+			FileUtils.copyFile(scrFile, new File(filePath));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	void hover(WebElement element) {

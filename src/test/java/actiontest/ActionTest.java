@@ -17,7 +17,7 @@ public class ActionTest extends BaseTestPage {
 		Assert.assertTrue(loginPage.isMenuDisplayed(), "Menu popup isn't displayed");
 		hover(loginPage.nextBtn);
 		Assert.assertTrue(loginPage.isCursorPointer(), "Cursor isn't change to pointer");
-		makeScreenshots();
+		makeScreenshots(driver, "d:\\tmp", "Screen.png");
 		loginPage.loginInput.sendKeys("test");
 		clearInputViaHotKeys(loginPage.loginInput);
 		Assert.assertTrue(loginPage.isInputEmpty(loginPage.loginInput), "Login input isn't empty");
