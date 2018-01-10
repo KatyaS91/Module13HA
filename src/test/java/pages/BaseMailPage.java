@@ -15,13 +15,13 @@ public class BaseMailPage extends AbstractMailPage {
 	private String accountLogoXpath = "//*[contains(@title, '%s')]";
 
 	@FindBy(xpath = "//a[contains(text(), 'Выйти')]")
-	public WebElement exitBtn;
+	private WebElement exitBtn;
 	@FindBy(xpath = "//div[contains(@role, 'button') and contains(text(), 'НАПИСАТЬ')]")
-	public WebElement writeBtn;
+	private WebElement writeBtn;
 	@FindBy(xpath = "//*[contains(@aria-label, 'Черновики')]")
-	public WebElement draftsBtn;
+	private WebElement draftsBtn;
 	@FindBy(xpath = "//*[contains(@title, 'Отправленные')]")
-	public WebElement sentBtn;
+	private WebElement sentBtn;
 	@FindBy(xpath = "//div[@role='main']")
 	public WebElement letters;
 

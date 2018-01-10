@@ -19,7 +19,7 @@ public class DraftPage extends BaseMailPage {
 	private static final String SUCCESS_MSG_XPATH = "//div[contains(text(), 'Письмо отправлено')]";
 
 	@FindBy(xpath = "//div[@role = 'main']//table//tr")
-	public List<WebElement> drafts;
+	private List<WebElement> drafts;
 
 	DraftPage(WebDriver driver) {
 		super(driver);

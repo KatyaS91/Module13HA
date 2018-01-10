@@ -66,7 +66,9 @@ public class BaseTestPage {
 		try {
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFileToDirectory(screenshot, new File("d:\\tmp\\screenshot"));
-		} catch (Exception ex) {}
+		} catch (Exception ex) {
+			ex.fillInStackTrace();
+		}
 	}
 
 	void hover(WebElement element) {

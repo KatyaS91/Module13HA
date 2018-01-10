@@ -18,7 +18,7 @@ public class LoginPage extends BaseMailPage {
 	@FindBy(css = "div [id*= 'Next']")
 	public WebElement nextBtn;
 	@FindBy(css = "input[type = 'password']")
-	public WebElement passwordInput;
+	private WebElement passwordInput;
 	@FindBy(css = "#identifierId")
 	public WebElement loginInput;
 	@FindBy(xpath = "//div[contains(text(), 'More options')]")

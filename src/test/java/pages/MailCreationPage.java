@@ -14,17 +14,17 @@ public class MailCreationPage extends BaseMailPage {
 	private String letterIsCreatedIndicator = "//span[text() = 'Сохранено']";
 
 	@FindBy(xpath = "//*[@name = 'subjectbox']")
-	public WebElement subjectField;
+	private WebElement subjectField;
 	@FindBy(xpath = "//div[@role = 'textbox']")
-	public WebElement bodyField;
+	private WebElement bodyField;
 	@FindBy(xpath = "//textarea[@name = 'to']")
-	public WebElement addressField;
+	private WebElement addressField;
 	@FindBy(xpath = "//div[contains(text(), 'Отправить')]")
-	public WebElement sendBtn;
+	private WebElement sendBtn;
 	@FindBy(xpath = "//div[@command = 'Files']")
-	public WebElement attachFile;
+	private WebElement attachFile;
 
-	public MailCreationPage(WebDriver driver) {
+	MailCreationPage(WebDriver driver) {
 		super(driver);
 	}
 
@@ -36,16 +36,7 @@ public class MailCreationPage extends BaseMailPage {
 		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(letterIsCreatedIndicator)));
 	}
 
-	public void send() {
+	void send() {
 		sendBtn.click();
-	}
-
-	public boolean attachFile(String fileLocation) {
-		try {
-			attachFile.sendKeys(fileLocation);
-			return true;
-		} catch (Exception ex) {
-			return false;
-		}
 	}
 }
