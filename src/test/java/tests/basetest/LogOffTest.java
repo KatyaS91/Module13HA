@@ -10,8 +10,9 @@ import tests.BaseTestPage;
  * Created by Katsiaryna_Skarzhyns on 1/9/2018.
  */
 public class LogOffTest extends BaseTestPage {
+
 	@Test(description = "Log off test", groups = "p0")
-	public void log_off_test() throws InterruptedException {
+	public void log_off_test() {
 		LoginPage loginPage = new LoginPage(driver);
 		BaseMailPage baseMailPage = loginPage.login();
 		loginPage = baseMailPage.logOff();

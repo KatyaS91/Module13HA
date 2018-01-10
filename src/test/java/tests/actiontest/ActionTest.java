@@ -11,7 +11,7 @@ import tests.BaseTestPage;
 public class ActionTest extends BaseTestPage {
 
 	@Test(description = "Action checking", groups = "p0")
-	public void create_mail() throws InterruptedException {
+	public void create_mail() {
 		LoginPage loginPage = new LoginPage(driver);
 		highlightElement(driver, loginPage.loginInput);
 		doubleClick(loginPage.moreOptionsBtn);

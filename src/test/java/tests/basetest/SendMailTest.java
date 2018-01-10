@@ -14,8 +14,7 @@ public class SendMailTest extends BaseTestPage {
 	private static final String BODY = "Bla bla";
 
 	@Test(description = "Check sending", groups = "p0")
-	public void sent_mail() throws InterruptedException {
-
+	public void sent_mail() {
 		LoginPage loginPage = new LoginPage(driver);
 		BaseMailPage baseMailPage = loginPage.login();
 		MailCreationPage mailCreationPage = baseMailPage.openCreateMailPage();

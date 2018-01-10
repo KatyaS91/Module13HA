@@ -11,7 +11,7 @@ import tests.BaseTestPage;
  */
 public class LoginTest extends BaseTestPage {
 	@Test(description = "Check login form", groups = "p0")
-	public void login_test() throws InterruptedException {
+	public void login_test() {
 		LoginPage login = new LoginPage(driver);
 		BaseMailPage baseMailPage = login.login();
 		Assert.assertTrue(baseMailPage.isPageOpened(), "Account page wasn't opened");

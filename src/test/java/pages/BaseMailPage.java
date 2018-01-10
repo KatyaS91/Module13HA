@@ -51,7 +51,7 @@ public class BaseMailPage extends AbstractMailPage {
 		return new DraftPage(driver);
 	}
 
-	public SentPage openSentMails() throws InterruptedException {
+	public SentPage openSentMails() {
 		sentBtn.click();
 		return new SentPage(driver);
 	}
