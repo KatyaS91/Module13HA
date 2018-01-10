@@ -27,12 +27,12 @@ public class BaseTestPage {
 		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
 		String browser = context.getCurrentXmlTest().getParameter("browser");
 
-		if (browser.equals("Firefox")) {
+		if (browser.equalsIgnoreCase("firefox")) {
 			capabilities = DesiredCapabilities.firefox();
 			capabilities.setPlatform(Platform.WINDOWS);
 			capabilities.setVersion("57");
 		}
-		if (browser.equals("Chrome")) {
+		if (browser.equalsIgnoreCase("chrome")) {
 			capabilities = DesiredCapabilities.chrome();
 			capabilities.setPlatform(Platform.WINDOWS);
 			capabilities.setVersion("63.0");
