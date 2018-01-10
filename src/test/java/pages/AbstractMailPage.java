@@ -11,7 +11,7 @@ public abstract class AbstractMailPage {
 
 	public WebDriver driver;
 
-	public AbstractMailPage(WebDriver driver) {
+	AbstractMailPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}

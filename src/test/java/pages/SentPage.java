@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
  */
 public class SentPage extends BaseMailPage {
 
-	private String expectedLetterXpath = "//span[contains(text(), '%s')]//ancestor::td//..//span[contains(text(), '%s')]//ancestor::td//..//div//span[contains(@email, '%s')]";
+	private final static String EXPECTED_LETTER_XPATH = "//span[contains(text(), '%s')]//ancestor::td//..//span[contains(text(), '%s')]//ancestor::td//..//div//span[contains(@email, '%s')]";
 
 	SentPage(WebDriver driver) {
 		super(driver);
@@ -17,7 +17,7 @@ public class SentPage extends BaseMailPage {
 
 	public boolean isExpectedMailPresent(String body, String subject, String address) {
 		try {
-			return driver.findElements(By.xpath(String.format(expectedLetterXpath, body, subject, address))).size() > 0;
+			return driver.findElements(By.xpath(String.format(EXPECTED_LETTER_XPATH, body, subject, address))).size() > 0;
 		} catch (NoSuchElementException ex) {
 			return false;
 		}

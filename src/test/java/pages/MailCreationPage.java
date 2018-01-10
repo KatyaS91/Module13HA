@@ -11,7 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Katsiaryna_Skarzhyns on 1/3/2018.
  */
 public class MailCreationPage extends BaseMailPage {
-	private String letterIsCreatedIndicator = "//span[text() = 'Сохранено']";
+
+	private static final String LETTER_IS_CREATED_INDICATOR = "//span[text() = 'Сохранено']";
 
 	@FindBy(xpath = "//*[@name = 'subjectbox']")
 	private WebElement subjectField;
@@ -33,7 +34,7 @@ public class MailCreationPage extends BaseMailPage {
 		addressField.sendKeys(address);
 		subjectField.sendKeys(subject);
 		bodyField.sendKeys(body);
-		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(letterIsCreatedIndicator)));
+		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LETTER_IS_CREATED_INDICATOR)));
 	}
 
 	void send() {
