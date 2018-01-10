@@ -1,4 +1,4 @@
-package actiontest;
+package tests;
 
 import data.TestData;
 import org.apache.commons.io.FileUtils;
@@ -51,14 +51,14 @@ public class BaseTestPage {
 		driver.quit();
 	}
 
-	void scrollDown(WebElement targetElement) {
+	protected void scrollDown(WebElement targetElement) {
 		new Actions(driver).moveToElement(targetElement).build().perform();
 		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 		jse.executeScript("scroll(0, 400);");
 		System.out.println("Scroll down");
 	}
 
-	void doubleClick(WebElement element) {
+	protected void doubleClick(WebElement element) {
 		new Actions(driver).moveToElement(element).doubleClick(element).build().perform();
 	}
 
@@ -71,17 +71,17 @@ public class BaseTestPage {
 		}
 	}
 
-	void hover(WebElement element) {
+	protected void hover(WebElement element) {
 		new Actions(driver).moveToElement(element).build().perform();
 	}
 
-	void clearInputViaHotKeys(WebElement input) {
+	protected void clearInputViaHotKeys(WebElement input) {
 		input.click();
 		new Actions(driver).keyDown(Keys.CONTROL).sendKeys(String.valueOf('\u0061')).perform();
 		new Actions(driver).sendKeys(Keys.DELETE);
 	}
 
-	void highlightElement(WebDriver driver, WebElement element) {
+	protected void highlightElement(WebDriver driver, WebElement element) {
 		String background = element.getCssValue("backgroundColor");
 		JavascriptExecutor js = ((JavascriptExecutor) driver);
 		js.executeScript("arguments[0].style.background = '" + "yellow" + "'", element);

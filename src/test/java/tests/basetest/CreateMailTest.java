@@ -1,12 +1,12 @@
-package tests;
+package tests.basetest;
 
-import actiontest.BaseTestPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BaseMailPage;
 import pages.DraftPage;
 import pages.LoginPage;
 import pages.MailCreationPage;
+import tests.BaseTestPage;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/9/2018.

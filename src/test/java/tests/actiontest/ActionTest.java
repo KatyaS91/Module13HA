@@ -1,8 +1,9 @@
-package actiontest;
+package tests.actiontest;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+import pages.*;
+import tests.BaseTestPage;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/4/2018.

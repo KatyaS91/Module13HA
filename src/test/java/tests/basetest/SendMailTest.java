@@ -1,12 +1,12 @@
-package tests;
+package tests.basetest;
 
-import actiontest.BaseTestPage;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
+import tests.BaseTestPage;
 
 /**
- * Created by Katsiaryna_Skarzhyns on 1/9/2018.
+ * Created by Katsiaryna_Skarzhyns on 1/10/2018.
  */
 public class SendMailTest extends BaseTestPage {
 	private static final String ADDRESS = "KatyaS91@mail.ru";
