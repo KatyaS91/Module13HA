@@ -24,6 +24,6 @@ public class SendMailTest extends BaseTestPage {
 		Assert.assertTrue(draftPage.sendDraft(0), "The mail doesn't disappear from drafts");
 		SentPage sentPage = draftPage.openSentMails();
 		Assert.assertTrue(sentPage.isExpectedMailPresent(BODY, SUBJECT, ADDRESS), "Expected mail doesn't present in the folder");
-		makeScreenshots(driver, "d:\\tmp", "Screenr.png");
+		makeScreenshots();
 	}
 }

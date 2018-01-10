@@ -11,7 +11,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
@@ -63,15 +62,11 @@ public class BaseTestPage {
 		new Actions(driver).moveToElement(element).doubleClick(element).build().perform();
 	}
 
-	protected void makeScreenshots(WebDriver driver, String pathToSave, String name) {
-		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		String filePath = pathToSave + File.separator + "ScreenShots" + File.separator + name;
-
+	protected void makeScreenshots() {
 		try {
-			FileUtils.copyFile(scrFile, new File(filePath));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFileToDirectory(screenshot, new File("d:\\tmp\\screenshot"));
+		} catch (Exception ex) {}
 	}
 
 	void hover(WebElement element) {

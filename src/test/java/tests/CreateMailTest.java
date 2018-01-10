@@ -25,6 +25,6 @@ public class CreateMailTest extends BaseTestPage {
 		DraftPage draftPage = baseMailPage.openDrafts();
 		Assert.assertTrue(draftPage.isExpectedDraftSubjectPresent(SUBJECT), "The draft with subject isn't displayed");
 		Assert.assertTrue(draftPage.isExpectedDraftBodyDisplayed(BODY), "The draft with body isn't displayed");
-		makeScreenshots(driver, "d:\\tmp", "Screen.png");
+		makeScreenshots();
 	}
 }
