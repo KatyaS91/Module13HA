@@ -22,7 +22,8 @@ public class BaseTestPage {
 	public WebDriver driver;
 	private DesiredCapabilities capabilities;
 
-	@BeforeClass(alwaysRun = true, description = "Start browser") public void startBrowser(ITestContext context) {
+	@BeforeClass(alwaysRun = true, description = "Start browser")
+	public void startBrowser(ITestContext context) {
 		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
 		String browser = context.getCurrentXmlTest().getParameter("browser");
 

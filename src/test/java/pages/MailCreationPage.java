@@ -1,5 +1,6 @@
 package pages;
 
+import bo.Mail;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,11 +30,11 @@ public class MailCreationPage extends BaseMailPage {
 		super(driver);
 	}
 
-	public void createMail(String address, String subject, String body) {
+	public void createMail(Mail mail) {
 		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//textarea[@name = 'to']")));
-		addressField.sendKeys(address);
-		subjectField.sendKeys(subject);
-		bodyField.sendKeys(body);
+		addressField.sendKeys(mail.getAddress());
+		subjectField.sendKeys(mail.getSubject());
+		bodyField.sendKeys(mail.getDescription());
 		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LETTER_IS_CREATED_INDICATOR)));
 	}
 
