@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.WaitUtils;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/3/2018.
@@ -35,7 +36,7 @@ public class MailCreationPage extends BaseMailPage {
 		addressField.sendKeys(mail.getAddress());
 		subjectField.sendKeys(mail.getSubject());
 		bodyField.sendKeys(mail.getDescription());
-		new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOfElementLocated(By.xpath(LETTER_IS_CREATED_INDICATOR)));
+		WaitUtils.waitForElementToAppear(driver, By.xpath(LETTER_IS_CREATED_INDICATOR));
 	}
 
 	void send() {
