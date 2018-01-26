@@ -7,8 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static data.TestData.LOGIN;
-import static data.TestData.PASSWORD;
+import static utils.data.TestData.LOGIN;
+import static utils.data.TestData.PASSWORD;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.

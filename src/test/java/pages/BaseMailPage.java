@@ -6,12 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import static data.TestData.LOGIN;
+import static utils.data.TestData.LOGIN;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.
  */
-public class BaseMailPage extends AbstractMailPage {
+public class BaseMailPage extends BasePage {
 	private String accountLogoXpath = "//*[contains(@title, '%s')]";
 
 	@FindBy(xpath = "//a[contains(text(), 'Выйти')]")

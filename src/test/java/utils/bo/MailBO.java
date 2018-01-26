@@ -1,7 +1,7 @@
-package bo;
+package utils.bo;
 
-import static data.TestData.ADDRESS;
-import static data.TestData.SUBJECT;
+import static utils.data.TestData.ADDRESS;
+import static utils.data.TestData.SUBJECT;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/24/2018.

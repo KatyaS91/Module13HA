@@ -1,51 +1,24 @@
 package tests;
 
-import data.TestData;
+import utils.driversingleton.WebDriverSingleton;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 
 import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/4/2018.
  */
 public class BaseTestPage {
+
 	public WebDriver driver;
-	private DesiredCapabilities capabilities;
 
 	@BeforeClass(alwaysRun = true, description = "Start browser")
-	public void startBrowser(ITestContext context) {
-		System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
-		String browser = context.getCurrentXmlTest().getParameter("browser");
-
-		if (browser.equalsIgnoreCase("firefox")) {
-			capabilities = DesiredCapabilities.firefox();
-			capabilities.setPlatform(Platform.WINDOWS);
-			capabilities.setVersion("57");
-		}
-		if (browser.equalsIgnoreCase("chrome")) {
-			capabilities = DesiredCapabilities.chrome();
-			capabilities.setPlatform(Platform.WINDOWS);
-			capabilities.setVersion("63.0");
-		}
-
-		try {
-			driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
-			driver.manage().window().maximize();
-			driver.get(TestData.URL.getValue());
-			driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-		} catch (MalformedURLException ex) {
-			ex.printStackTrace();
-		}
+	public void setUp() {
+		driver = WebDriverSingleton.getWebDriverInstance();
 	}
 
 	@AfterClass public void cleanUp() {

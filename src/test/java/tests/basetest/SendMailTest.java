@@ -1,6 +1,6 @@
 package tests.basetest;
 
-import bo.MailBO;
+import utils.bo.MailBO;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;

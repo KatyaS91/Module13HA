@@ -1,4 +1,4 @@
-package data;
+package utils.data;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 12/27/2017.

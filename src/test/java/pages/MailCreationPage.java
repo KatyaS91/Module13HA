@@ -1,13 +1,14 @@
 package pages;
 
-import bo.MailBO;
+import utils.bo.MailBO;
+import utils.data.WaiterType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.WaitUtils;
+import utils.waiterfactory.WaiterFactory;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/3/2018.
@@ -15,6 +16,7 @@ import utils.WaitUtils;
 public class MailCreationPage extends BaseMailPage {
 
 	private static final String LETTER_IS_CREATED_INDICATOR = "//span[text() = 'Сохранено']";
+	WaiterFactory waiterFactory = new WaiterFactory();
 
 	@FindBy(xpath = "//*[@name = 'subjectbox']")
 	private WebElement subjectField;
@@ -36,7 +38,7 @@ public class MailCreationPage extends BaseMailPage {
 		addressField.sendKeys(mailBO.getAddress());
 		subjectField.sendKeys(mailBO.getSubject());
 		bodyField.sendKeys(mailBO.getDescription());
-		WaitUtils.waitForElementToAppear(driver, By.xpath(LETTER_IS_CREATED_INDICATOR));
+		waiterFactory.wait(WaiterType.APPEARED).waitForPageIsLoaded(driver, By.xpath(LETTER_IS_CREATED_INDICATOR));
 	}
 
 	void send() {
