@@ -3,13 +3,14 @@ package utils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.elementdecorator.CustomWebDriver;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/24/2018.
  */
 public class WaitUtils {
 
-	public static boolean waitForPageToLoad(WebDriver driver) {
+	public static boolean waitForPageToLoad(CustomWebDriver driver) {
 		final JavascriptExecutor js = ((JavascriptExecutor) driver);
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {

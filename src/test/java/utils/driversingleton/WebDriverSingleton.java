@@ -2,7 +2,6 @@ package utils.driversingleton;
 
 import utils.data.TestData;
 import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
@@ -17,15 +16,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class WebDriverSingleton {
 
-	private static WebDriver driver;
+	private static CustomWebDriver driver;
 	private static DesiredCapabilities capabilities;
 	private static ITestContext context;
-	private static String browser = context.getCurrentXmlTest().getParameter("browser");
+	//private static String browser = context.getCurrentXmlTest().getParameter("browser");
+	private static String browser = "chrome";
 
 	private WebDriverSingleton() {
 	}
 
-	public static WebDriver getWebDriverInstance() {
+	public static CustomWebDriver getWebDriverInstance() {
 		if(driver == null) {
 			if (browser.equalsIgnoreCase("firefox")) {
 				capabilities = DesiredCapabilities.firefox();
@@ -38,8 +38,7 @@ public class WebDriverSingleton {
 				capabilities.setVersion("63.0");
 			}
 			try {
-				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
-				driver = new CustomWebDriver(driver);
+				driver = new CustomWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
 				driver.manage().window().maximize();
 				driver.get(TestData.URL.getValue());
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -1,11 +1,11 @@
 package pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.elementdecorator.CustomWebDriver;
 
 import static utils.data.TestData.LOGIN;
 import static utils.data.TestData.PASSWORD;
@@ -24,7 +24,7 @@ public class LoginPage extends BaseMailPage {
 	@FindBy(xpath = "//div[contains(text(), 'More options')]")
 	public WebElement moreOptionsBtn;
 
-	public LoginPage(WebDriver driver) {
+	public LoginPage(CustomWebDriver driver) {
 		super(driver);
 	}
 

@@ -3,11 +3,11 @@ package pages;
 import utils.bo.MailBO;
 import utils.data.WaiterType;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.elementdecorator.CustomWebDriver;
 import utils.waiterfactory.WaiterFactory;
 
 /**
@@ -29,7 +29,7 @@ public class MailCreationPage extends BaseMailPage {
 	@FindBy(xpath = "//div[@command = 'Files']")
 	private WebElement attachFile;
 
-	MailCreationPage(WebDriver driver) {
+	MailCreationPage(CustomWebDriver driver) {
 		super(driver);
 	}
 
