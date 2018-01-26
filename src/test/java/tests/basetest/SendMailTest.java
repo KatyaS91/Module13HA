@@ -1,6 +1,6 @@
 package tests.basetest;
 
-import bo.Mail;
+import bo.MailBO;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
@@ -16,12 +16,12 @@ public class SendMailTest extends BaseTestPage {
 		LoginPage loginPage = new LoginPage(driver);
 		BaseMailPage baseMailPage = loginPage.login();
 		MailCreationPage mailCreationPage = baseMailPage.openCreateMailPage();
-		Mail mail = new Mail();
-		mailCreationPage.createMail(mail);
+		MailBO mailBO = new MailBO();
+		mailCreationPage.createMail(mailBO);
 		DraftPage draftPage = baseMailPage.openDrafts();
-		Assert.assertTrue(draftPage.sendDraft(0), "The mail doesn't disappear from drafts");
+		Assert.assertTrue(draftPage.sendDraft(0), "The mailBO doesn't disappear from drafts");
 		SentPage sentPage = draftPage.openSentMails();
-		Assert.assertTrue(sentPage.isExpectedMailPresent(mail.getDescription(), mail.getSubject(), mail.getAddress()), "Expected mail doesn't present in the folder");
+		Assert.assertTrue(sentPage.isExpectedMailPresent(mailBO.getDescription(), mailBO.getSubject(), mailBO.getAddress()), "Expected mailBO doesn't present in the folder");
 		makeScreenshots();
 	}
 }

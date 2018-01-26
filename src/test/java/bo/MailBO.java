@@ -1,29 +1,32 @@
 package bo;
 
+import static data.TestData.ADDRESS;
+import static data.TestData.SUBJECT;
+
 /**
  * Created by Katsiaryna_Skarzhyns on 1/24/2018.
  */
-public class Mail {
+public class MailBO {
 
 	private String address;
 	private String subject;
 	private String description;
 
-	public Mail(String address, String subject) {
+	public MailBO(String address, String subject) {
 		this.address = address;
 		this.subject = subject;
 	}
 
-	public Mail(String address, String subject, String description) {
+	public MailBO(String address, String subject, String description) {
 		this.address = address;
 		this.subject = subject;
 		this.description = description;
 	}
 
-	public Mail() {
-		address = "KatyaS91@mail.ru";
-		subject = "test";
-		description = "test";
+	public MailBO() {
+		address = ADDRESS.getValue();
+		subject = SUBJECT.getValue();
+		description = SUBJECT.getValue();
 	}
 
 	public String getAddress() {

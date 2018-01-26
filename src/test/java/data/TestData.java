@@ -7,7 +7,9 @@ public enum  TestData {
 
 	URL("https://mail.google.com"),
 	LOGIN("berezhkov.agm@gmail.com"),
-	PASSWORD("berezhkovMm8");
+	PASSWORD("berezhkovMm8"),
+	ADDRESS("KatyaS91@mail.ru"),
+	SUBJECT("test");
 
 	private String value;
 

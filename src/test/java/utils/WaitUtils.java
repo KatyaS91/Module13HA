@@ -11,13 +11,6 @@ import java.util.concurrent.TimeUnit;
  */
 public class WaitUtils {
 
-	public static void wait(int seconds) {
-		try {
-			Thread.sleep(seconds * 1000);
-		} catch (InterruptedException ignored) {
-		}
-	}
-
 	public static boolean waitForElementToDissapear(WebDriver driver, final By by) {
 		try {
 			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);

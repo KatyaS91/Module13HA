@@ -1,6 +1,6 @@
 package tests.basetest;
 
-import bo.Mail;
+import bo.MailBO;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BaseMailPage;
@@ -19,11 +19,11 @@ public class CreateMailTest extends BaseTestPage {
 		LoginPage loginPage = new LoginPage(driver);
 		BaseMailPage baseMailPage = loginPage.login();
 		MailCreationPage mailCreationPage = baseMailPage.openCreateMailPage();
-		Mail mail = new Mail();
-		mailCreationPage.createMail(mail);
+		MailBO mailBO = new MailBO();
+		mailCreationPage.createMail(mailBO);
 		DraftPage draftPage = baseMailPage.openDrafts();
-		Assert.assertTrue(draftPage.isExpectedDraftSubjectPresent(mail.getSubject()), "The draft with subject isn't displayed");
-		Assert.assertTrue(draftPage.isExpectedDraftBodyDisplayed(mail.getDescription()), "The draft with body isn't displayed");
+		Assert.assertTrue(draftPage.isExpectedDraftSubjectPresent(mailBO.getSubject()), "The draft with subject isn't displayed");
+		Assert.assertTrue(draftPage.isExpectedDraftBodyDisplayed(mailBO.getDescription()), "The draft with body isn't displayed");
 		makeScreenshots();
 	}
 }
