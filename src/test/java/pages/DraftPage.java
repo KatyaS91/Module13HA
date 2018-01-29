@@ -2,11 +2,11 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.elementdecorator.CustomWebDriver;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class DraftPage extends BaseMailPage {
 	@FindBy(xpath = "//div[@role = 'main']//table//tr")
 	private List<WebElement> drafts;
 
-	DraftPage(WebDriver driver) {
+	DraftPage(CustomWebDriver driver) {
 		super(driver);
 	}
 

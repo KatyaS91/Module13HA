@@ -2,9 +2,9 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import utils.elementdecorator.CustomWebDriver;
 
 import static utils.data.TestData.LOGIN;
 
@@ -25,7 +25,7 @@ public class BaseMailPage extends BasePage {
 	@FindBy(xpath = "//div[@role='main']")
 	public WebElement letters;
 
-	BaseMailPage(WebDriver driver) {
+	BaseMailPage(CustomWebDriver driver) {
 		super(driver);
 	}
 
