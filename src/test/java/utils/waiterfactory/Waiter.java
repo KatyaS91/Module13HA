@@ -1,12 +1,12 @@
 package utils.waiterfactory;
 
 import org.openqa.selenium.By;
-import utils.elementdecorator.CustomWebDriver;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/26/2018.
  */
 public abstract class Waiter {
 
-	public abstract void waitForPageIsLoaded(CustomWebDriver driver, final By by);
+	public abstract void waitForPageIsLoaded(WebDriver driver, final By by);
 }

@@ -3,9 +3,9 @@ package utils.waiterfactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.elementdecorator.CustomWebDriver;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class WaitForElementDisappeared extends Waiter {
 
-	public void waitForPageIsLoaded(CustomWebDriver driver, final By by) {
+	public void waitForPageIsLoaded(WebDriver driver, final By by) {
 		try {
 			driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
 			WebDriverWait wait = new WebDriverWait(driver, 10);

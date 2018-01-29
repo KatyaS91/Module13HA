@@ -6,7 +6,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import utils.elementdecorator.CustomWebDriver;
 
 import java.io.File;
 
@@ -15,7 +14,7 @@ import java.io.File;
  */
 public class BaseTestPage {
 
-	public CustomWebDriver driver;
+	public WebDriver driver;
 
 	@BeforeClass(alwaysRun = true, description = "Start browser")
 	public void setUp() {

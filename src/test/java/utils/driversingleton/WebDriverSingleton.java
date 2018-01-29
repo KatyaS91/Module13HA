@@ -1,11 +1,11 @@
 package utils.driversingleton;
 
+import org.openqa.selenium.WebDriver;
 import utils.data.TestData;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.ITestContext;
-import utils.elementdecorator.CustomWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class WebDriverSingleton {
 
-	private static CustomWebDriver driver;
+	private static WebDriver driver;
 	private static DesiredCapabilities capabilities;
 	private static ITestContext context;
 	//private static String browser = context.getCurrentXmlTest().getParameter("browser");
@@ -25,7 +25,7 @@ public class WebDriverSingleton {
 	private WebDriverSingleton() {
 	}
 
-	public static CustomWebDriver getWebDriverInstance() {
+	public static WebDriver getWebDriverInstance() {
 		if(driver == null) {
 			if (browser.equalsIgnoreCase("firefox")) {
 				capabilities = DesiredCapabilities.firefox();
@@ -38,7 +38,7 @@ public class WebDriverSingleton {
 				capabilities.setVersion("63.0");
 			}
 			try {
-				driver = new CustomWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
+				driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
 				driver.manage().window().maximize();
 				driver.get(TestData.URL.getValue());
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
