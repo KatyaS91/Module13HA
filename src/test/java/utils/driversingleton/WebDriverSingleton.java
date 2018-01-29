@@ -42,6 +42,8 @@ public class WebDriverSingleton {
 				driver.manage().window().maximize();
 				driver.get(TestData.URL.getValue());
 				driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+				driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+				driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 			} catch (MalformedURLException ex) {
 				ex.printStackTrace();
 			}

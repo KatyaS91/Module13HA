@@ -15,7 +15,7 @@ public class BasePage {
 
 	public BasePage(CustomWebDriver driver) {
 		this.driver =  WebDriverSingleton.getWebDriverInstance();
-		WaitUtils.waitForPageToLoad(driver);
+		//WaitUtils.waitForPageToLoad(driver);
 		PageFactory.initElements(driver, this);
 	}
 
