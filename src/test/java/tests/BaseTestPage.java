@@ -1,5 +1,6 @@
 package tests;
 
+import org.testng.Reporter;
 import utils.driversingleton.WebDriverSingleton;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -9,6 +10,8 @@ import org.testng.annotations.BeforeClass;
 import utils.elementdecorator.CustomWebDriver;
 
 import java.io.File;
+
+import static utils.driversingleton.WebDriverSingleton.cleanUp;
 
 /**
  * Created by Katsiaryna_Skarzhyns on 1/4/2018.
@@ -20,10 +23,13 @@ public class BaseTestPage {
 	@BeforeClass(alwaysRun = true, description = "Start browser")
 	public void setUp() {
 		driver = WebDriverSingleton.getWebDriverInstance();
+		Reporter.log("Browser started");
 	}
 
-	@AfterClass public void cleanUp() {
-		driver.quit();
+	@AfterClass(alwaysRun = true)
+	public void quitBrowser() {
+		cleanUp();
+		Reporter.log("Browser closed");
 	}
 
 	protected void scrollDown(WebElement targetElement) {

@@ -33,11 +33,13 @@ public class WebDriverSingleton {
 				capabilities.setVersion("57");
 			}
 			if (browser.equalsIgnoreCase("chrome")) {
+				//System.setProperty("webdriver.chrome.driver", "D:\\webdriver\\chromedriver.exe");
 				capabilities = DesiredCapabilities.chrome();
 				capabilities.setPlatform(Platform.WINDOWS);
 				capabilities.setVersion("63.0");
 			}
 			try {
+				//driver = new CustomWebDriver(new ChromeDriver(capabilities));
 				driver = new CustomWebDriver(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities));
 				driver.manage().window().maximize();
 				driver.get(TestData.URL.getValue());
@@ -49,5 +51,10 @@ public class WebDriverSingleton {
 			}
 		}
 		return driver;
+	}
+
+	public static void cleanUp() {
+		driver.quit();
+		driver = null;
 	}
 }
