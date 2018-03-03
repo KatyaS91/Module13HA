@@ -3,7 +3,6 @@ package pages;
 import utils.driversingleton.WebDriverSingleton;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import utils.WaitUtils;
 import utils.elementdecorator.CustomWebDriver;
 
 /**
@@ -15,7 +14,6 @@ public class BasePage {
 
 	public BasePage(CustomWebDriver driver) {
 		this.driver =  WebDriverSingleton.getWebDriverInstance();
-		//WaitUtils.waitForPageToLoad(driver);
 		PageFactory.initElements(driver, this);
 	}
 

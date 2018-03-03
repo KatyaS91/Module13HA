@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -25,6 +26,8 @@ public class LoginPage extends BaseMailPage {
 	@FindBy(xpath = "//div[contains(text(), 'More options')]")
 	public WebElement moreOptionsBtn;
 
+	private static final Logger LOG = Logger.getLogger(LoginPage.class);
+
 	public LoginPage(CustomWebDriver driver) {
 		super(driver);
 	}
@@ -49,6 +52,7 @@ public class LoginPage extends BaseMailPage {
 		try {
 			return driver.findElement(By.xpath("//div[@role='menu']")).isDisplayed();
 		} catch (NoSuchElementException ex) {
+			LOG.info("Menu isn't displayed");
 			return false;
 		}
 	}

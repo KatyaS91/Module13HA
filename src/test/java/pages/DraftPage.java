@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,8 @@ public class DraftPage extends BaseMailPage {
 	@FindBy(xpath = "//div[@role = 'main']//table//tr")
 	private List<WebElement> drafts;
 
+	private static final Logger LOG = Logger.getLogger(DraftPage.class);
+
 	DraftPage(CustomWebDriver driver) {
 		super(driver);
 	}
@@ -29,6 +32,7 @@ public class DraftPage extends BaseMailPage {
 		try {
 			return driver.findElement(By.xpath(String.format(subjectLabelXpath, expectedSubject))).isDisplayed();
 		} catch (NoSuchElementException ex) {
+			LOG.info("Expected draft subject isn't displayed");
 			return false;
 		}
 	}
@@ -37,6 +41,7 @@ public class DraftPage extends BaseMailPage {
 		try {
 			return  driver.findElement(By.xpath(String.format(subjectLabelXpath, expectedBody))).isDisplayed();
 		} catch (NoSuchElementException ex) {
+			LOG.info("Expected draft body isn't displayed");
 			return false;
 		}
 	}

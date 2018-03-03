@@ -1,5 +1,6 @@
 package utils.elementdecorator;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Keyboard;
 import org.openqa.selenium.interactions.Mouse;
@@ -11,6 +12,8 @@ import java.util.Set;
 public class CustomWebDriver implements WebDriver, JavascriptExecutor {
 
 	protected RemoteWebDriver rwd;
+
+	private static final Logger LOG = Logger.getLogger(CustomWebDriver.class);
 
 	public CustomWebDriver(RemoteWebDriver driver) {
 		rwd = driver;
@@ -33,7 +36,13 @@ public class CustomWebDriver implements WebDriver, JavascriptExecutor {
 	}
 
 	public WebElement findElement(By by) {
-		return rwd.findElement(by);
+		WebElement element = rwd.findElement(by);
+		JavascriptExecutor js = ((JavascriptExecutor) rwd);
+		js.executeScript("arguments[0].style.background = '" + "yellow" + "'", element);
+		LOG.info("Element located by " + by.toString() + " was find");
+		String background = element.getCssValue("backgroundColor");
+		js.executeScript("arguments[0].style.background = '" + background + "'", element);
+		return element;
 	}
 
 	public String getPageSource() {

@@ -1,6 +1,6 @@
 package tests;
 
-import org.testng.Reporter;
+import org.apache.log4j.Logger;
 import utils.driversingleton.WebDriverSingleton;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
@@ -19,24 +19,25 @@ import static utils.driversingleton.WebDriverSingleton.cleanUp;
 public class BaseTestPage {
 
 	public CustomWebDriver driver;
+	private static final Logger LOG = Logger.getLogger(BaseTestPage.class);
 
 	@BeforeClass(alwaysRun = true, description = "Start browser")
 	public void setUp() {
 		driver = WebDriverSingleton.getWebDriverInstance();
-		Reporter.log("Browser started");
+		LOG.info("Browser started");
 	}
 
 	@AfterClass(alwaysRun = true)
 	public void quitBrowser() {
 		cleanUp();
-		Reporter.log("Browser closed");
+		LOG.info("Browser closed");
 	}
 
 	protected void scrollDown(WebElement targetElement) {
 		new Actions(driver).moveToElement(targetElement).build().perform();
 		JavascriptExecutor jse = ((JavascriptExecutor) driver);
 		jse.executeScript("scroll(0, 400);");
-		System.out.println("Scroll down");
+		LOG.info("Scroll down");
 	}
 
 	protected void doubleClick(WebElement element) {
@@ -48,7 +49,7 @@ public class BaseTestPage {
 			File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFileToDirectory(screenshot, new File("d:\\tmp\\screenshot"));
 		} catch (Exception ex) {
-			ex.fillInStackTrace();
+			LOG.error(ex);
 		}
 	}
 
@@ -60,12 +61,5 @@ public class BaseTestPage {
 		input.click();
 		new Actions(driver).keyDown(Keys.CONTROL).sendKeys(String.valueOf('\u0061')).perform();
 		new Actions(driver).sendKeys(Keys.DELETE);
-	}
-
-	protected void highlightElement(WebDriver driver, WebElement element) {
-		String background = element.getCssValue("backgroundColor");
-		JavascriptExecutor js = ((JavascriptExecutor) driver);
-		js.executeScript("arguments[0].style.background = '" + "yellow" + "'", element);
-		js.executeScript("arguments[0].style.background = '" + background + "'", element);
 	}
 }

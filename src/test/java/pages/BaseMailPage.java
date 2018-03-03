@@ -1,5 +1,6 @@
 package pages;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -25,12 +26,15 @@ public class BaseMailPage extends BasePage {
 	@FindBy(xpath = "//div[@role='main']")
 	public WebElement letters;
 
+	private static final Logger LOG = Logger.getLogger(BaseMailPage.class);
+
 	BaseMailPage(CustomWebDriver driver) {
 		super(driver);
 	}
 
 	public MailCreationPage openCreateMailPage() {
 		writeBtn.click();
+		LOG.info("Click on write button");
 		return new MailCreationPage(driver);
 	}
 
@@ -38,6 +42,7 @@ public class BaseMailPage extends BasePage {
 		try {
 			return driver.findElement(By.xpath(String.format(accountLogoXpath, LOGIN.getValue()))).isDisplayed();
 		} catch (NoSuchElementException ex) {
+			LOG.error("The page isn't opened", ex);
 			return false;
 		}
 	}
@@ -48,17 +53,20 @@ public class BaseMailPage extends BasePage {
 
 	public DraftPage openDrafts() {
 		draftsBtn.click();
+		LOG.info("Click on drafts button");
 		return new DraftPage(driver);
 	}
 
 	public SentPage openSentMails() {
 		sentBtn.click();
+		LOG.info("Click on sent button");
 		return new SentPage(driver);
 	}
 
 	public LoginPage logOff() {
 		driver.findElement(By.xpath(String.format(accountLogoXpath, LOGIN.getValue()))).click();
 		exitBtn.click();
+		LOG.info("Click on exit button");
 		return new LoginPage(driver);
 	}
 }
