@@ -22,6 +22,5 @@ public class SendMailTest extends BaseTestPage {
 		Assert.assertTrue(draftPage.sendDraft(0), "The mailBO doesn't disappear from drafts");
 		SentPage sentPage = draftPage.openSentMails();
 		Assert.assertTrue(sentPage.isExpectedMailPresent(mailBO.getDescription(), mailBO.getSubject(), mailBO.getAddress()), "Expected mailBO doesn't present in the folder");
-		makeScreenshots();
 	}
 }

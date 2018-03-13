@@ -18,6 +18,5 @@ public class LogOffTest extends BaseTestPage {
 		loginPage = baseMailPage.logOff();
 		Assert.assertTrue(loginPage.isNextBntDisplayed());
 		Assert.assertTrue(loginPage.isPasswordInputDisplayed());
-		makeScreenshots();
 	}
 }

@@ -9,7 +9,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import java.util.List;
 import java.util.Set;
 
-public class CustomWebDriver implements WebDriver, JavascriptExecutor {
+public class CustomWebDriver implements WebDriver, JavascriptExecutor, TakesScreenshot {
 
 	protected RemoteWebDriver rwd;
 
@@ -51,12 +51,10 @@ public class CustomWebDriver implements WebDriver, JavascriptExecutor {
 
 	public void close() {
 		rwd.close();
-
 	}
 
 	public void quit() {
 		rwd.close();
-
 	}
 
 	public Set<String> getWindowHandles() {

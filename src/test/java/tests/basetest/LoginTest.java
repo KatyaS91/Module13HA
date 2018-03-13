@@ -15,6 +15,5 @@ public class LoginTest extends BaseTestPage {
 		LoginPage login = new LoginPage(driver);
 		BaseMailPage baseMailPage = login.login();
 		Assert.assertTrue(baseMailPage.isPageOpened(), "Account page wasn't opened");
-		makeScreenshots();
 	}
 }
